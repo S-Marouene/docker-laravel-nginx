@@ -3,7 +3,7 @@ version: '3'
 
 services:
   php:
-    image: imagenlaravel:latest
+    image: imagelaravel:latest
     volumes:
       - ./.env:/var/www/html/.env
    # environment:

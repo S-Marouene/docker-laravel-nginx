@@ -1,0 +1,52 @@
+to run this project
+
+docker build -t imagelaravel -f .docker/nginx/php/prod.Dockerfile .
+docker build -t imagenginx -f .docker/nginx/prod.Dockerfile .
+docker-compose up -d
+
+
+____________________________________________Other usefull cmd docker______________________________________
+docker images
+docker save -o /home/maro/test.tar sail-8.1/app
+
+sudo apt-get install -y rsync
+rsync -avz test.tar onpc@172.20.10.179:/home/onpc
+
+ssh onpc@172.20.10.179
+ls -l
+sudo docker load -i test.tar
+sudo docker run -d -p 80:80 --name contnr_test sail-8.1/app
+
+
+docker status  :: status of containers
+
+docker-compose exec php bash      redirect to var/www/html$
+ls to rview file in html
+
+
+
+in path C:\laragon\bin\php\php-8.1.10-Win32-vs16-x64 to change php 8
+
+
+docker build -t testdocker -f .docker/nginx/php/prod.Dockerfile .     to build prod images
+docker run --rm -it testdocker:latest bash
+
+
+networking
+______________________
+
+docker network ls
+docker network create --subnet 10.1.0.0/16 --gateway 10.1.0.1 --ip-range 10.1.4.0/24 network_maro
+docker inspect network_maro
+
+docker run -itd --name nginx_cntcnr --network network_maro --ip 10.1.4.1 imagenginx
+docker inspect 04b45c6d7814 | grep IP
+
+
+
+
+
+
+
+
+
