@@ -4,34 +4,56 @@ version: '3'
 services:
   php:
     image: imagelaravel:latest
+    container_name: laravel
+    restart: always
     volumes:
       - ./.env:/var/www/html/.env
     networks:
       customnetwork:
         ipv4_address: 172.20.0.10
-   # environment:
-    #  - APP_DEBUG="true"
-     # - APP_KEY="base64:I/uGDqdQdgVbBGT6MPYcmCg9hiLYx57oWrvkU6ZaIE0="
-
- #   build:
-  #    context: .
-#
- #   volumes:
-  #    - ./:/var/www/html
-
 
   web:
-    #image: nginx:1.17
-    #working_dir: /var/www/html
     image: imagenginx:latest
+    container_name: nginx
+    restart: always
     ports:
       - "80:80"
     networks:
       customnetwork:
         ipv4_address: 172.20.0.15
-    #volumes:
-    #  - ./:/var/www/html
-    #  - .docker/nginx/nginx_template_local.conf:/etc/nginx/conf.d/default.conf
+
+  db:
+    image: mariadb:10.4
+    container_name: my_db
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_USERNAME: root
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: laravel
+    networks:
+      - customnetwork
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      - PMA_ARBITRARY:1
+      - PMA_HOST:db
+      - MYSQL_USERNAME:root
+      - MYSQL_ROOT_PASSWORD:secret
+    ports:
+      - "81:80"
+    depends_on:
+      - db
+    networks:
+      - customnetwork
+    volumes:
+    # define directory path where you shall store your persistent data and config
+    # files of phpmyadmin
+      - ./docker/phpmyadmin
+
 networks:
   customnetwork:
     ipam:
