@@ -3,6 +3,21 @@ to run this project
 docker build -t imagelaravel -f .docker/nginx/php/prod.Dockerfile .
 docker build -t imagenginx -f .docker/nginx/prod.Dockerfile .
 docker-compose up -d
+docker exec nom_conteneur bash -c "php artisan up"
+
+
+docker container run cmd from windows
+
+docker exec -it laravel bash
+
+______________________Run onpc without composer________________________________
+
+
+docker run -d --name onpcv2 --hostname php --network bridge laravel
+
+docker run -d -p 80:80 --name nginx --link onpcv2 --network bridge nginx
+
+______________________________________________________________________________
 
 
 ____________________________________________SAVE COPY LOAD images______________________________________
