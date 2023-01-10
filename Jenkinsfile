@@ -9,6 +9,21 @@ pipeline {
                 '''
             }
         }
+        stage("down  container") {
+            steps {
+                bat '''
+                    docker-compose down
+                '''
+            }
+        }
+
+        stage("Up my container") {
+            steps {
+                bat '''
+                    docker-compose up -d
+                '''
+            }
+        }
 
 }
 
