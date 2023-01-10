@@ -14,7 +14,8 @@ RUN npm run production
 
 FROM  nginx:1.17
 
-COPY .docker/nginx/nginx_template_prod.conf /etc/nginx/conf.d/default.conf
+#COPY .docker/nginx/nginx_template_prod.conf /etc/nginx/conf.d/default.conf
+COPY .docker/nginx/nginx_template_local.conf /etc/nginx/conf.d/default.conf
 COPY --chown=www-data --from=npm-build /var/www/html/public/ /var/www/html/public/
 COPY --chown=www-data . /var/www/html/
 

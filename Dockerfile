@@ -1,4 +1,4 @@
-FROM php:8.0.5-fpm
+FROM php:7.4-fpm
 
 
 # Set working directory

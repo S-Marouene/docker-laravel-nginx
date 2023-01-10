@@ -32,9 +32,9 @@ ls -l
 sudo docker load -i test.tar
 sudo docker run -d -p 80:80 --name contnr_test sail-8.1/app
 
-_________________________________________________________________________________________________________
-
-
+___________________________________________copy from pc to container an vs vers ca______________________________________________________________
+from windows power shell
+docker cp webserver:/etc/nginx/conf.d/app.conf app.conf
 
 
 
