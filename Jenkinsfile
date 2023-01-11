@@ -28,7 +28,7 @@ pipeline {
 
         stage("Run Composer Install") {
             steps {
-                bat 'docker compose run --rm composer install'
+                bat 'composer install'
             }
         }
 
